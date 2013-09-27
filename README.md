@@ -39,6 +39,7 @@ exec(function(){
     action: 'watching',
     twitter: 'vimeo',
     display_input: true,
+    init: function() {...}
     update: function(force) {...},
     blocks: [...]
   };
@@ -61,8 +62,9 @@ app_name | string | Yes | Appears at the top of the app, as well as in status up
 action | string | if notify.share is true | The verb that will appear in status updates. Example values are "watching" and "listening to".
 twitter | string | if notify.share is true | The @handle mentioned in Twitter share status updates.
 display_input | boolean | |  Default is false. Enabling this will show an icon overlay over the web page when a button is tapped.
+init | function | | A function called after a phone has connected.
 update | function | | A function called by the plugin javascript to update the remote.
-blocks | array | Yes | An array of objects containing the remote layout 
+blocks | array | Yes | An array of objects containing the remote layout .
 
 # A note on testing
 
@@ -270,12 +272,14 @@ force | boolean | Yes | Pass the value of force from ```mote.io.remote.update(fo
 ```javascript
 mote.io.remote =  {
   update: function(force) {
+  
     var thisArtist = $($('#player-nowplaying a')[3]).text(),
       thisSong = $($('#player-nowplaying a')[4]).text(),
       thisImage = extractUrl($('.haarp-active.section-track').find('.readpost > span').css('background-image')),
       thisPerma = window.location.origin + $('.haarp-active.section-track').find('a.track').attr('href');
    
     mote.io.notify(thisArtist, thisSong, thisImage, thisPerma, force);
+  
   }
 }
 ```
@@ -296,12 +300,28 @@ force | boolean | Yes | Pass the value of force from ```mote.io.remote.update(fo
 ```javascript
 mote.io.remote =  {
   update: function(force) {
-    var thisArtist = $($('#player-nowplaying a')[3]).text(),
-      thisSong = $($('#player-nowplaying a')[4]).text(),
-      thisImage = extractUrl($('.haarp-active.section-track').find('.readpost > span').css('background-image')),
-      thisPerma = window.location.origin + $('.haarp-active.section-track').find('a.track').attr('href');
-   
-    mote.io.notify(thisArtist, thisSong, thisImage, thisPerma, force);
+    
+	    if($('#playerFav').hasClass('fav-on')) {
+	     mote.io.updateButton('heart', null, '#ff0000', force);
+	    } else {
+	     mote.io.updateButton('heart', null, '#434345', force);
+	    }
+	    
   }
 }
 ```
+
+# Additional Notes
+
+## jQuery
+
+The mote.io plugin provides you with jQuery for free by using the ```jQ``` variable.
+
+## Deferred Loading
+
+A remote is only sent to the client once, when it is found on the webpage. Something like the following will work just fine.
+
+```
+setTimeout(function(){
+  mote.io.remote = {};
+}, 5000);
