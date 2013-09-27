@@ -178,25 +178,9 @@ exec(function(){
 	            window.location = "/popular/twitter";
 	          }
 	        }
-	        /*,
-	        {
-	          optgroup: 'Me',
-	          text: 'Feed',
-	          action: function() {
-	            $('#user-menu-feed-link').click();
-	          }
-	        },
-	        {
-	          optgroup: 'Me',
-	          text: 'Favorites',
-	          action: function() {
-	            $('#menu-item-mytracks > a').click();
-	          }
-	        }
-	        */
 	      ]
 	    }
 	  ]
-	}
+	};
 
 });
