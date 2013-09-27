@@ -1,0 +1,122 @@
+{
+  "name": "Mote.io",
+  "version": "1.2",
+  "manifest_version": 2,
+  "description": "Control the sites you love remotely with Mote.io",
+  "permissions": [
+    "tabs",
+    "<all_urls>"
+  ],
+  "background": { "scripts": ["background.js"] },
+  "browser_action": {
+    "default_icon": {
+      "19": "images/icons/19.png",
+      "38": "images/icons/48.png"
+    },
+    "default_title": "Mote.io"
+  },
+  "icons": {
+    "16": "images/icons/16.png",
+    "48": "images/icons/48.png",
+    "128": "images/icons/128.png"
+  },
+  "web_accessible_resources": [
+    "images/icon.png"
+  ],
+  "content_scripts": [
+    {
+      "matches": [
+        "http://*.hypem.com/*",
+        "http://hypem.com/*"
+      ],
+      "js": [
+        "moteio.js",
+        "remotes/hypem.js"
+      ],
+      "run_at": "document_start"
+    },
+    {
+      "matches": [
+        "https://localhost:3000/start",
+        "https://mote.io/start",
+        "https://moteiostaging-9163.onmodulus.net/start"
+      ],
+      "js": [
+        "moteio.js",
+        "remotes/moteio.js"
+      ],
+      "run_at": "document_start"
+    },
+    {
+      "matches": [
+        "http://www.rdio.com/*"
+      ],
+      "js": [
+        "moteio.js",
+        "remotes/rdio.js"
+      ],
+      "run_at": "document_start"
+    },
+    {
+      "matches": [
+        "http://www.pandora.com/*"
+      ],
+      "js": [
+        "moteio.js",
+        "remotes/pandora.js"
+      ],
+      "run_at": "document_start"
+    },
+    {
+      "matches": [
+        "http://grooveshark.com/*"
+      ],
+      "js": [
+        "moteio.js",
+        "remotes/grooveshark.js"
+      ],
+      "run_at": "document_start"
+    },
+    {
+      "matches": [
+        "*://*.soundcloud.com/*"
+      ],
+      "js": [
+        "moteio.js",
+        "remotes/soundcloud.js"
+      ],
+      "run_at": "document_start"
+    },
+    {
+      "matches": [
+        "*://*.vimeo.com/couchmode*"
+      ],
+      "js": [
+        "moteio.js",
+        "remotes/vimeo.js"
+      ],
+      "run_at": "document_start"
+    },
+    {
+      "matches": [
+        "http://localhost:8080/",
+        "*://moteioyoutube-9226.onmodulus.net/"
+      ],
+      "js": [
+        "moteio.js",
+        "remotes/moteio-youtube.js"
+      ],
+      "run_at": "document_start"
+    },
+    {
+      "matches": [
+        "*://docs.google.com/*/presentation/*/present*"
+      ],
+      "js": [
+        "moteio.js",
+        "remotes/google-drive-presentation.js"
+      ],
+      "run_at": "document_start"
+    }
+  ]
+}
