@@ -15,10 +15,10 @@ I'll review your code, merge your remote in, and then deploy it to the world!
 
 # Building a remote
 
-* Clone this repository
-* Load it as an extension in Chrome [follow directions on google site]
-* Disable production extension
-* Visit http://mote.io/start to make sure it works
+* [Fork this repository](https://github.com/ianjennings/mote.io-extension/fork)
+* [Disable production extension](https://support.google.com/chrome/answer/187443?hl=en)
+* [Load it as an unpacked extension in Chrome](http://developer.chrome.com/extensions/getstarted.html#unpacked)
+* Visit [the start page](http://mote.io/start) to make sure the unpacked extension works
  
 # Working with manifest.json
 
@@ -300,13 +300,13 @@ force | boolean | Yes | Pass the value of force from ```mote.io.remote.update(fo
 ```javascript
 mote.io.remote =  {
   update: function(force) {
-    
-	    if($('#playerFav').hasClass('fav-on')) {
-	     mote.io.updateButton('heart', null, '#ff0000', force);
-	    } else {
-	     mote.io.updateButton('heart', null, '#434345', force);
-	    }
-	    
+	
+	if($('#playerFav').hasClass('fav-on')) {
+	mote.io.updateButton('heart', null, '#ff0000', force);
+	} else {
+	mote.io.updateButton('heart', null, '#434345', force);
+	}
+
   }
 }
 ```
@@ -321,7 +321,8 @@ The mote.io plugin provides you with jQuery for free by using the ```jQ``` varia
 
 A remote is only sent to the client once, when it is found on the webpage. Something like the following will work just fine.
 
-```
+```javascript
 setTimeout(function(){
   mote.io.remote = {};
 }, 5000);
+```
