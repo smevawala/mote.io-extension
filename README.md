@@ -156,6 +156,8 @@ The yellow lines here represent individual blocks of buttons.
 
 ### Buttons.data
 
+Data is an array of button objects. Button objects have the following properties:
+
 Property | Type | Required | Notes
 --- | --- | --- | ---
 press | function | Yes | A function to call when the button is pressed
@@ -207,16 +209,47 @@ Property | Type | Required | Notes
 type | string | Yes | Must be 'select'
 data | array | Yes | An array of select option objects.
 
-          h4 Select.data
-          p Select data is an array of select options. Options can have the following parameters
-          ul
-            li text - The option text
-            li action - A function to fire when the select button is pressed
-            li optgroup - A string representing the parent group
-          p
-            img.img-rounded(src='/images/developers/select.png', width='300')
-          script(src='https://gist.github.com/ianjennings/5324490.js')
-          hr
+```javascript
+{
+  type: 'select',
+  data: [
+    {...},
+    {...}
+  ]
+}
+```
+
+### Select.data
+
+Select.data is an array of select option objects. Select option objects have the following properties:
+
+Property | Type | Required | Notes
+--- | --- | --- | ---
+text | string | Yes | The option text
+action | array | Yes | A function to fire when the select button is pressed
+optgroup | string | | Groups select option objects under a parent with this value
+
+```javascript
+{
+  type: 'select',
+  data: [
+    {
+      optgroup: 'Latest',
+      text: 'Latest',
+      action: function() {
+        window.location = "/latest";
+      }
+    },
+    {
+      optgroup: 'Latest',
+      text: 'Freshest',
+      action: function() {
+        window.location = "/latest/fresh";
+      }
+    },
+    ...
+}
+```
 
         section
           h2 Methods
