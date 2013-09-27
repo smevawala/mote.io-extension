@@ -25,126 +25,46 @@ I'll review your code, merge your remote in, and then deploy it to the world!
 * You need to edit manifest.json
 * More about path matching on Google Chrome site [..]
 
-# The remote javascript
+# Remote API
+
+You can find many examplees of remotes in the /remotes directory. A remote file looks like so:
 
 ```javascript
 
 exec(function(){
 
-	mote.io.remote = {
+  mote.io.remote = {
     api_version: '0.1',
     app_name: 'Vimeo',
     action: 'watching',
     twitter: 'vimeo',
     display_input: true,
-    update: function(force) {
-
-      if($('.play_pause_button').hasClass('playing')) {
-        mote.io.updateButton('play', 'pause', null, force);
-      } else {
-        mote.io.updateButton('play', 'play', null, force);
-      }
-
-      if($('.like').hasClass('on')) {
-       mote.io.updateButton('heart', null, '#ff0000', force);
-      } else {
-       mote.io.updateButton('heart', null, '#434345', force);
-      }
-
-      mote.io.notify(
-        $('.info').find('hgroup h1').text(),
-        $($('.info').find('hgroup h2 a')[0]).text(),
-        $('.info').find('img').prop('src'),
-        window.location.href,
-        force);
-        
-    },
-    blocks: [
-      {
-        type: 'notify',
-        share: true
-      },
-      {
-        type: 'buttons',
-        data: [
-          {
-            press: function () {
-              $('.play_pause_button').click();
-            },
-            icon: 'play',
-            hash: 'play'
-          },
-          {
-            press: function () {
-              if($('#login_lightbox').is(':visible')){
-                $('#lightbox_overlay').click();
-              } else {
-                $('.like').click();
-              }
-            },
-            icon: 'heart',
-            hash: 'heart'
-          },
-          {
-            press: function () {
-              if($('#login_lightbox').is(':visible')){
-                $('#lightbox_overlay').click();
-              } else {
-                $('.later').click();
-              }
-            },
-            icon: 'time'
-          },
-          {
-            press: function () {
-              if($('#info_blanket').is(':visible')){
-                $('.click_catcher').click();
-              } else {
-                $('.info').click();
-              }
-            },
-            icon: 'info-sign'
-          }
-        ]
-      },
-      {
-        type: 'buttons',
-        data: [
-          {
-            press: function () {
-              $('.previous_button').click();
-            },
-            icon: 'fast-backward'
-          },
-          {
-            press: function () {
-              $('.rewind_button').click();
-            },
-            icon: 'backward'
-          },
-          {
-            press: function () {
-              $('.fast_forward_button').click();
-            },
-            icon: 'forward'
-          },
-          {
-            press: function () {
-              $('.next_button').click();
-            },
-            icon: 'fast-forward'
-          }
-        ]
-      }
-    ]
+    update: function(force) {...},
+    blocks: [...]
   };
 
 });
 
 ```
 
-#
-h2 Config Variables
+Every remote file must be wrapped in the ```exec(function(){...});``` call. 
+
+This function allows the javascript code to run at the document level. This means any variable you define within this function
+is going to be in the global scope! 
+
+# Config Variables
+
+
+Property | Type | Required | Notes
+--- | --- | --- | ---
+api_version | string | Yes | Should be '0.1'
+app_name | string | Yes | Appears at the top of the app, as well as in status updates.
+action | string | if notify.share is true | The verb that will appear in status updates. Example values are "watching" and "listening to".
+twitter | string | if notify.share is true | The @handle mentioned in Twitter share status updates.
+display_input | Boolean | |  Default is false. Enabling this will show an icon overlay over the web page when a button is tapped.
+update | function | | A function called by the plugin javascript to update the remote.
+blocks | array | Yes | An array of objects containing the remote layout 
+
 hr
 p Here we define a variable called moteioConfig. This variable is read by the script tag supplied above when it starts.
 script(src='https://gist.github.com/ianjennings/5324439.js')
