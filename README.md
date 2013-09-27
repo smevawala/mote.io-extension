@@ -1,7 +1,7 @@
 Mote.io Chrome Extension
 =================
 
-# First things first
+# Getting a remote pushed into production
 
 Thanks for your interest in building a remote for Mote.io! 
 
@@ -13,17 +13,56 @@ Here's how you can get your remote into the production version of the Mote.io ex
 
 I'll review your code, merge your remote in, and then deploy it to the world!
 
-# Building a remote
+# Development Cycle
 
-* [Fork this repository](https://github.com/ianjennings/mote.io-extension/fork)
-* [Disable production extension](https://support.google.com/chrome/answer/187443?hl=en)
-* [Load it as an unpacked extension in Chrome](http://developer.chrome.com/extensions/getstarted.html#unpacked)
-* Visit [the start page](http://mote.io/start) to make sure the unpacked extension works
- 
-# Working with manifest.json
+Mote.io remotes work by clicking and inspecting objects in the DOM. When a button is pressed on the phone, it fires a function which should probably click something on the page.
 
-* You need to edit manifest.json
-* More about path matching on Google Chrome site [..]
+It's annoying to define a remote, reload the extension, launch the app, sync, and press the button on the phone just to test if a function works.
+
+Instead, this is how I develop remotes:
+
+1. Test all of my button functions in the Chrome console before even begining to write the config file. This is identical to the environment the functions will be called in when triggered from the phone. If it works in console, it will work in ```mote.io.remote```. These functions can be as simple as ```$('#playerPlay').click();```
+1. Create a really simple remote with just buttons and test it on the phone
+2. Test functions to find now playing objects / states in the Chrome console (like #1). These may be like: ```$('#now-playing').text().trim();```
+2. I go back and add update(), notify(), and updateButton() methods and test it on the phone
+
+You can also fire the button functions manually from the console once they have been added to mote.io.remote like so:
+```javascript
+mote.io.remote.blocks[0].data[0].press();
+```
+
+# Setting up the extension in developer mode
+
+1. [Fork this repository](https://github.com/ianjennings/mote.io-extension/fork)
+1. [Disable production extension](https://support.google.com/chrome/answer/187443?hl=en)
+1. [Load it as an unpacked extension in Chrome](http://developer.chrome.com/extensions/getstarted.html#unpacked)
+1. Visit [the start page](http://mote.io/start) to make sure the unpacked extension works
+
+# Adding your own remote
+
+1. First, create a file in the ```/remotes``` directory with a descriptive name.
+1. Then, add an entry to ```manifest.json``` for the site you want to support.
+
+The entry should look something like this:
+
+```javascript
+    {
+      "matches": [
+        "http://www.pandora.com/*"
+      ],
+      "js": [
+        "moteio.js",
+        "remotes/pandora.js"
+      ],
+      "run_at": "document_start"
+    }
+```
+
+# Reloading and refreshing extension code
+
+Chrome extensions are a hassle to refresh. You need to visit ```chrome://extensions``` and refresh the page to update your extension. You can read more about refreshing extensions [here](http://developer.chrome.com/extensions/getstarted.html#update-code).
+
+You also may try [this extension](https://chrome.google.com/webstore/detail/quick-extension-reload/goeiakeofnlpkioeadcbocfifmgkidpb?hl=en-GB) that adds a shortcut to reload extensions.
 
 # Remote API
 
@@ -65,20 +104,6 @@ display_input | boolean | |  Default is false. Enabling this will show an icon o
 init | function | | A function called after a phone has connected.
 update | function | | A function called by the plugin javascript to update the remote.
 blocks | array | Yes | An array of objects containing the remote layout .
-
-# A note on testing
-
-You are one of the first people to ever use this API. You'll probably break things!
-
-For example, if you send a bad remote config over, you may crash the app or leave it in a bad state. Restaring the app is your best bet. You'll need to completely kill the app and launch it again as it maintains state between open / close.
-          
-It's annoying to define a remote, launch the app, try it out, and test, etc. 
-
-The mote.io varialbe is accessable from the console, so you can test your functions like this:
-
-```javascript
-mote.io.remote.blocks[0].data[0].press();
-```
 
 # Block Types
 
