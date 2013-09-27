@@ -251,34 +251,57 @@ optgroup | string | | Groups select option objects under a parent with this valu
 }
 ```
 
-        section
-          h2 Methods
-          hr
-          h3 Notify
-          p Notify sends information to the notify block about what to display.
-          p The notify function takes three parameters
-          ul
-            li line1 - The first line of text
-            li line2 - The second line of text
-            li image - An image to display next to text. Resized to 50px x 50px
-          p
-            img.img-rounded(src='/images/developers/notify.png', width='300')
-          script(src='https://gist.github.com/ianjennings/5324448.js')
-          hr
-          h3 Update Button
-          p The update button method allows you to change the color and icon of a button on a remote.
-          p The update button function takes three parameters
-          ul
-            li button hash - The hash identifier of the button. Make sure you assign this variable in the button in config.
-            li icon - The new icon to display.
-            li color - The button icon color. A 6 character hex code like #000000 or #ffffff
-          p
-            img.img-rounded(src='/images/developers/button_update.png', width='50')
-          script(src='https://gist.github.com/ianjennings/5324497.js')
-        section
-          h2 Kitchen sink
-          hr
-          p This is an example config for the Hype Machine app. It uses all available APIs.
-          p
-            img.img-rounded(src='/images/developers/example_remote.png', width='300')
-          script(src='https://gist.github.com/ianjennings/5323006.js')
+# Methods
+
+## Notify
+
+Notify sends information to the notify block about what to display.
+
+![](https://mote.io/images/developers/notify.png)
+
+Parameters | Type | Required | Notes
+--- | --- | --- | ---
+line1| string | Yes | The first line of text
+line2 | string | Yes | The second line of text
+image | string | Yes | The url of an image to display next to text. Resized to 50px x 50px
+url | string | Yes | A permalink to the current playing item.  **Not the current window.location**, but a link to the single item that is playing right now.
+force | boolean | Yes | Pass the value of force from ```mote.io.remote.update(force)```. Must be false if used outside of the ```update()``` context.
+
+```javascript
+mote.io.remote =  {
+  update: function(force) {
+    var thisArtist = $($('#player-nowplaying a')[3]).text(),
+      thisSong = $($('#player-nowplaying a')[4]).text(),
+      thisImage = extractUrl($('.haarp-active.section-track').find('.readpost > span').css('background-image')),
+      thisPerma = window.location.origin + $('.haarp-active.section-track').find('a.track').attr('href');
+   
+    mote.io.notify(thisArtist, thisSong, thisImage, thisPerma, force);
+  }
+}
+```
+
+## Update Button
+
+The update button method allows you to change the color and icon of a button on a remote.
+
+![](https://mote.io/images/developers/button_update.png)
+
+Parameters | Type | Required | Notes
+--- | --- | --- | ---
+button_hash| string | Yes | The hash identifier of the button. Make sure you assign this variable in the button object.
+icon | string | Yes | The new icon to display.
+color | string | Yes | The button icon color. A 6 character hex code like #000000 or #ffffff
+force | boolean | Yes | Pass the value of force from ```mote.io.remote.update(force)```. Must be false if used outside of the ```update()``` context.
+
+```javascript
+mote.io.remote =  {
+  update: function(force) {
+    var thisArtist = $($('#player-nowplaying a')[3]).text(),
+      thisSong = $($('#player-nowplaying a')[4]).text(),
+      thisImage = extractUrl($('.haarp-active.section-track').find('.readpost > span').css('background-image')),
+      thisPerma = window.location.origin + $('.haarp-active.section-track').find('a.track').attr('href');
+   
+    mote.io.notify(thisArtist, thisSong, thisImage, thisPerma, force);
+  }
+}
+```
