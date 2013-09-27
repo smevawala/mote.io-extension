@@ -33,7 +33,7 @@ exec(function(){
 	      thisImage = extractUrl(active.find('.readpost > span').css('background-image')),
 	      thisPerma = window.location.origin + active.find('a.track').attr('href');
 
-	    mote.io.notify(thisArtist, thisSong, thisImage, thisPerma);
+	    mote.io.notify(thisArtist, thisSong, thisImage, thisPerma, force);
 
 	    // transfer button states
 	    if($('#playerPlay').hasClass('play')) {
