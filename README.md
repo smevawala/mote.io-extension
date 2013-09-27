@@ -289,7 +289,7 @@ Notify sends information to the notify block about what to display.
 Parameters | Type | Required | Notes
 --- | --- | --- | ---
 line1| string | Yes | The first line of text
-line2 | string | Yes | The second line of text
+line2 | string |  | The second line of text
 image | string | Yes | The url of an image to display next to text. Resized to 50px x 50px
 url | string | Yes | A permalink to the current playing item.  **Not the current window.location**, but a link to the single item that is playing right now.
 force | boolean | Yes | Pass the value of force from ```mote.io.remote.update(force)```. Must be false if used outside of the ```update()``` context.
