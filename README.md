@@ -12,7 +12,7 @@ You can resolve problems by:
 * Log in and out of the app
 * Refreshing the webpage
 
-If worse problems occur, I'll explin the connection issues and you can fire commands from console.
+If worse problems occur, I'll explain the connection issues and you can fire commands from console.
 
 -----------
 -----------
