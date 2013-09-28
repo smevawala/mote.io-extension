@@ -5,7 +5,7 @@ Mote.io Chrome Extension
 
 Promo codes for iOS are at the bottom. 
 
-**The internet seems to cut out randomly** which may affect your demo. Mote.io doesn't require a persistant connection, but messages may be drooped.
+**The internet seems to cut out randomly** which may affect your demo. Mote.io doesn't require a persistant connection, but messages may be dropped.
 
 You can resolve problems by:
 
