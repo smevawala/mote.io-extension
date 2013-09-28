@@ -15,6 +15,8 @@ You can resolve problems by:
 If worse problems occur, I'll explin the connection issues and you can fire commands from console.
 
 -----------
+-----------
+-----------
 
 Thanks for your interest in building a remote for Mote.io! 
 
