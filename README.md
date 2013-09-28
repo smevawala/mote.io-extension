@@ -1,7 +1,20 @@
 Mote.io Chrome Extension
 =================
 
-# Getting a remote pushed into production
+# Hey HackNY!
+
+Promo codes for iOS are at the bottom. 
+
+**The internet seems to cut out randomly** which may affect your demo.
+
+You can resolve problems by:
+
+* Log in and out of the app
+* Refresh the webpage
+
+If worse problems occur, I'll explin the connection issues and you can fire commands from console.
+
+-----------
 
 Thanks for your interest in building a remote for Mote.io! 
 
