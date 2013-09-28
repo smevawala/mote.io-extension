@@ -1,5 +1,5 @@
 exec(function(){
-
+    alert("penis");
 	mote.io.remote = {
     api_version: '0.1',
     app_name: 'Vimeo',

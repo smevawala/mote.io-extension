@@ -120,7 +120,7 @@
     },
     {
       "matches":[
-        "http://my.plexapp.com/web"
+        "*://*.:*/web/index.html*"
       ],
       "js": [
       "moteio.js",
