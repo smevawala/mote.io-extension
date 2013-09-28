@@ -117,6 +117,16 @@
         "remotes/google-drive-presentation.js"
       ],
       "run_at": "document_start"
+    },
+    {
+      "matches":[
+        "http://my.plexapp.com/web"
+      ],
+      "js": [
+      "moteio.js",
+      "remotes/plexmote.js"
+      ],
+      "run_at": "document_start"
     }
   ]
 }
