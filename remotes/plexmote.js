@@ -1,10 +1,9 @@
 exec(function(){
-    setInterval(function(){alert("Hello")},3000); 
 	mote.io.remote = {
     api_version: '0.1',
-    app_name: 'PLex',
+    app_name: 'Plex',
     action: 'watching',
-    twitter: 'plex',
+    twitter: 'plexapp',
     display_input: true,
     update: function(force) {
 
