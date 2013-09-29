@@ -52,7 +52,7 @@ exec(function(){
           {
             press: function () {
               if(mIndex > 0){
-                
+
                 $($('.tile-list li').find('a .poster-container')[mIndex]).css({'outline':''})
                 mIndex--;
               }
@@ -66,8 +66,10 @@ exec(function(){
               if($('.play-btn').length != 0){
                 window.location = $('.play-btn').attr('href');
               } else {
-                window.location = $($('.tile-list li a')[mIndex]).attr('href');
-                mIndex = -1;
+                if(mIndex != -1){
+                  window.location = $($('.tile-list li a')[mIndex]).attr('href');
+                  mIndex = -1;
+                }
               }
             },
             icon: 'circle'
