@@ -14,12 +14,6 @@ exec(function(){
         mote.io.updateButton('play', 'play', null, force);
       }
 
-      if($('.like').hasClass('on')) {
-       mote.io.updateButton('heart', null, '#ff0000', force);
-      } else {
-       mote.io.updateButton('heart', null, '#434345', force);
-      }
-
       mote.io.notify(
         $($('.video-details h2').find('a')[0]).text(),
         $($('.video-details h2').find('a')[1]).text(),
