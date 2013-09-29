@@ -229,7 +229,7 @@ navBlocks = [
         mote.io.notify(
           $($('.video-details h2').find('a')[0]).text(),
           $($('.video-details h2').find('a')[1]).text(),
-          $('.video-more-details').find('img').prop('src'),
+          'http://www.appscout.com/images/Plex-iOS-Logo.jpg',
           window.location.href,
           force);
       }
@@ -244,7 +244,10 @@ setInterval(function(){
     if(pflag ==false && parts[9] =="player"){
       pflag = true;
       mote.io.remote.blocks = playerBlock;
-      mote.io.receiver.sendRemote();  
+      mote.io.receiver.sendRemote(); 
+	  if($('.select-list').length !=0){
+		  $('.select-list').find('a')[0].click();
+	  }
     } else if(pflag ==true && parts[9] != "player"){
       pflag=false;
       mote.io.remote.blocks = navBlocks;
