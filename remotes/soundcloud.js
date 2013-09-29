@@ -130,7 +130,11 @@ exec(function() {
           mote.io.updateButton('play', 'play', null, force);
         }
         mote.io.notify(
-        $('.carousel.active .playing .carouselItem__info-user').text(), $('.carousel.active .playing .carouselItem__info-title').text(), $('.carousel.active .playing .image__full').attr('src'), window.location.origin + $('.carousel.active .playing .carouselItem__info-title').attr('href'), force);
+        $('.carousel.active .playing .carouselItem__info-user').text(), 
+        $('.carousel.active .playing .carouselItem__info-title').text(), 
+        $('.carousel.active .playing .image__full').attr('src'), 
+        window.location.origin + $('.carousel.active .playing .carouselItem__info-title').attr('href'), 
+        force);
       },
       blocks: [{
         type: 'notify',

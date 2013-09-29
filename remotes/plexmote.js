@@ -20,57 +20,54 @@ exec(function(){
       }
 
       mote.io.notify(
-        $('.info').find('hgroup h1').text(),
-        $($('.info').find('hgroup h2 a')[0]).text(),
-        $('.info').find('img').prop('src'),
+        $($('.video-details h2').find('a')[0]).text(),
+        $($('.video-details h2').find('a')[1]).text(),
+        $('.video-more-details').find('img').prop('src'),
         window.location.href,
         force);
     },
     blocks: [
       {
         type: 'notify',
-        share: true
+        share: false
+      },
+      {
+      	type: 'buttons',
+      	data: [
+          {
+            press: function () {
+             alert("Play/Pause");
+            },
+            icon: 'play'
+          }
+      	]
       },
       {
         type: 'buttons',
         data: [
-          {
+		 {
             press: function () {
-              $('.play_pause_button').click();
+              alert("Restart Vid");
             },
-            icon: 'play',
-            hash: 'play'
+            icon: 'fast-backward' 
           },
           {
             press: function () {
-              if($('#login_lightbox').is(':visible')){
-                $('#lightbox_overlay').click();
-              } else {
-                $('.like').click();
-              }
+              alert("Go back 10 sec");
             },
-            icon: 'heart',
-            hash: 'heart'
+            icon: 'backward'
           },
           {
             press: function () {
-              if($('#login_lightbox').is(':visible')){
-                $('#lightbox_overlay').click();
-              } else {
-                $('.later').click();
-              }
+             alert("Go forward 10 sec");
             },
-            icon: 'time'
+            icon: 'forward'
           },
           {
             press: function () {
-              if($('#info_blanket').is(':visible')){
-                $('.click_catcher').click();
-              } else {
-                $('.info').click();
-              }
+              alert("Skip");
             },
-            icon: 'info-sign'
+            icon: 'fast-forward'
           }
         ]
       },
@@ -79,27 +76,21 @@ exec(function(){
         data: [
           {
             press: function () {
-              $('.previous_button').click();
+              alert("Going home");
             },
-            icon: 'fast-backward'
+            icon: 'home' 
           },
           {
             press: function () {
-              $('.rewind_button').click();
+              alert("Lowering Volume");
             },
-            icon: 'backward'
+            icon: 'volume-down'
           },
           {
             press: function () {
-              $('.fast_forward_button').click();
+              alert("Raising Volume");
             },
-            icon: 'forward'
-          },
-          {
-            press: function () {
-              $('.next_button').click();
-            },
-            icon: 'fast-forward'
+            icon: 'volume-up'
           }
         ]
       }
