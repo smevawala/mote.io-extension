@@ -35,17 +35,17 @@ exec(function(){
           mIndex = -1;
         }
       },
-      {
-        type: 'buttons',
-        data: [
-          {
-            press: function () {
-              alert("going up");
-            },
-            icon: 'chevron-up' 
-          }
-        ]
-      },
+      // {
+      //   type: 'buttons',
+      //   data: [
+      //     {
+      //       press: function () {
+      //         alert("going up");
+      //       },
+      //       icon: 'chevron-up' 
+      //     }
+      //   ]
+      // },
       {
         type: 'buttons',
         data: [
@@ -100,15 +100,16 @@ exec(function(){
             },
             icon: 'reply' 
           },
+          // {
+          //   press: function () {
+          //     return 0;
+          //   },
+          //   icon: 'chevron-down'
+          // },
           {
             press: function () {
-              alert("go down");
-            },
-            icon: 'chevron-down'
-          },
-          {
-            press: function () {
-              return 0;
+              location.reload();
+              mIndex = -1;
             },
             icon: 'refresh'
           }
@@ -122,22 +123,17 @@ exec(function(){
           optgroup: 'Video',
           text: 'TV Shows',
           action: function() {
-              alert("Change to TV");
+            window.location = $($('#section-dropdown-list .dropdown-menu-large li a')[1]).attr('href');
+            mIndex = -1;
             }
           },
       {
         optgroup: 'Video',
         text: 'Movies',
         action: function(){
-          alert("Change to Movies");
+          window.location = $($('#section-dropdown-list .dropdown-menu-large li a')[0]).attr('href');
+          mIndex = -1;
         } 
-      },
-      {
-        optgroup: 'Music',
-        text: 'Awesome Music',
-        action: function(){
-          alert("You don't have any music");
-        }
       }
         ]
       }
