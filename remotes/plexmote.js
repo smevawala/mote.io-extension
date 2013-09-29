@@ -1,6 +1,6 @@
 exec(function(){
   var pflag = false; // var mediaList = $('ul.tile-list.media-tile-list li');
-  var mediaIndex = 0;
+  var mIndex = -1;
   //.css({'border':'5px solid #ff9d00'})
 
   mote.io.remote = {
@@ -50,23 +50,31 @@ exec(function(){
         data: [
           {
             press: function () {
-              alert("left");
+              if(mIndex > 0){
+                $($('.tile-list li').find('a .poster-container')[mIndex]).css({'outline':''})
+                mIndex--;
+              }
+              $($('.tile-list li').find('a .poster-container')[mIndex]).css({'outline':'5px solid #ff9d00'})
+
             },
             icon: 'chevron-left' 
           },
           {
             press: function () {
-             alert("select")
+              window.location = $($('.tile-list li a')[mIndex]).attr('href');
+              mIndex = -1;
             },
             icon: 'circle'
           },
           {
             press: function () {
-              var mediaList = $('.tile-list li');
-              // $('.tile-list.section-tile-list li a').
-              // $('.tile-list.section-tile-list li a').css({'border':'2px solid #ff9d00'})
-              mediaList.find('a .poster-container').addClass("hlMedia");
-              alert("right");
+              if(mIndex < $('.tile-list li').length){
+                if(mIndex != -1){
+                  $($('.tile-list li').find('a .poster-container')[mIndex]).css({'outline':''})
+                }
+                mIndex++; 
+              }
+              $($('.tile-list li').find('a .poster-container')[mIndex]).css({'outline':'5px solid #ff9d00'})
             },
             icon: 'chevron-right'
           }
