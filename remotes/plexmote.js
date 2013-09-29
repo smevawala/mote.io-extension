@@ -7,7 +7,7 @@ exec(function(){
     display_input: true,
     update: function(force) {
 
-      if($('.play_pause_button').hasClass('playing')) {
+      if(jwplayer(player).getState() == 'PLAYING') {
         mote.io.updateButton('play', 'pause', null, force);
       } else {
         mote.io.updateButton('play', 'play', null, force);
@@ -36,9 +36,14 @@ exec(function(){
       	data: [
           {
             press: function () {
-             alert("Play/Pause");
+             if(jwplayer(player).getState() == 'PLAYING'){
+             	jwplayer(player).pause();
+             } else{
+             	jwplayer(player).play();
+             }
             },
-            icon: 'play'
+            icon: 'play',
+            hash: 'play'
           }
       	]
       },
@@ -47,19 +52,19 @@ exec(function(){
         data: [
 		 {
             press: function () {
-              alert("Restart Vid");
+              jwplayer(player).seek(0);
             },
             icon: 'fast-backward' 
           },
           {
             press: function () {
-              alert("Go back 10 sec");
+              jwplayer(player).seek(jwplayer(player).getPosition()-50);
             },
             icon: 'backward'
           },
           {
             press: function () {
-             alert("Go forward 10 sec");
+             jwplayer(player).seek(jwplayer(player).getPosition()+50);
             },
             icon: 'forward'
           },
@@ -82,17 +87,52 @@ exec(function(){
           },
           {
             press: function () {
-              alert("Lowering Volume");
+            	if(jwplayer(player).getVolume()>10){
+            		jwplayer(player).setVolume(jwplayer(player).getVolume()-10);
+            	} else{
+            		jwplayer(player).setVolume(0);
+            	}
             },
             icon: 'volume-down'
           },
           {
             press: function () {
-              alert("Raising Volume");
+          		if(jwplayer(player).getVolume()<90){
+            		jwplayer(player).setVolume(jwplayer(player).getVolume()+10);
+            	} else{
+            		jwplayer(player).setVolume(100);
+            	}
             },
             icon: 'volume-up'
           }
         ]
+      },
+      {
+      	type: 'select',
+      	title: 'Change Media',
+      	data: [
+	      	{
+		      optgroup: 'Video',
+		      text: 'TV Shows',
+		      action: function() {
+	          	alert("Change to TV");
+	          }
+	      	},
+			{
+				optgroup: 'Video',
+				text: 'Movies',
+				action: function(){
+					alert("Change to Movies");
+				}	
+			},
+			{
+				optgroup: 'Music',
+				text: 'Awesome Music',
+				action: function(){
+					alert("You don't have any music");
+				}
+			}
+      	]
       }
     ]
   };
