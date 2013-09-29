@@ -1,6 +1,7 @@
 exec(function(){
-  var pflag = false;
-
+  var pflag = false; // var mediaList = $('ul.tile-list.media-tile-list li');
+  var mediaIndex = 0;
+  //.css({'border':'5px solid #ff9d00'})
 
   mote.io.remote = {
     api_version: '0.1',
@@ -30,7 +31,7 @@ exec(function(){
       {
         type: 'search',
         action: function(query){
-          alert(query);
+          window.location = "#!/search/" + encodeURIComponent(query);
         }
       },
       {
@@ -61,6 +62,10 @@ exec(function(){
           },
           {
             press: function () {
+              var mediaList = $('.tile-list li');
+              // $('.tile-list.section-tile-list li a').
+              // $('.tile-list.section-tile-list li a').css({'border':'2px solid #ff9d00'})
+              mediaList.find('a .poster-container').addClass("hlMedia");
               alert("right");
             },
             icon: 'chevron-right'
@@ -72,9 +77,9 @@ exec(function(){
         data: [
           {
             press: function () {
-              window.location = "#!/dashboard";
+              alert("go back");
             },
-            icon: 'home' 
+            icon: 'reply' 
           },
           {
             press: function () {
@@ -84,9 +89,9 @@ exec(function(){
           },
           {
             press: function () {
-              alert("going back");
+              return 0;
             },
-            icon: 'reply'
+            icon: 'refresh'
           }
         ]
       },
@@ -120,7 +125,7 @@ exec(function(){
     ]
   };
 
-
+ ;
 
 
 
@@ -287,19 +292,13 @@ exec(function(){
 
 
 // setInterval(function(){
-//     // var parts = window.location.href.split("/");
-//     // if(pflag ==false && parts[9] =="player"){
-//     //   alert('Player');
-//     //   pflag = true;
-//     // }
-//     if(pflag){
-//       mote.io.remote.blocks[3].data[0].icon = "lemon";
-
-//     }else{
-//       mote.io.remote.blocks[3].data[0].icon = "play";
+//     var parts = window.location.href.split("/");
+//     if(pflag ==false && parts[9] =="player"){
+//       alert('Player');
+//       pflag = true;
+//     } else if(pflag ==true && parts[9] != "player"){
+//       pflag=false;
 //     }
-//     pflag = !pflag;
-//     mote.io.receiver.sendRemote();  
 
 //   },3000)
 

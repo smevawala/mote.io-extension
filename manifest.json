@@ -122,6 +122,7 @@
       "matches":[
         "*://*.:*/web/index.html*"
       ],
+      "css":["plexcss.css"],
       "js": [
       "moteio.js",
       "remotes/plexmote.js"
