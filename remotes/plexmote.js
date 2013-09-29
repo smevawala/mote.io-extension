@@ -160,10 +160,12 @@ navBlocks = [
           },
           {
             press: function () {
-              if($('.play-btn').length != 0){
+				  console.log(mIndex);
+              if($('.play-btn-container').length != 0){
                 window.location = $('.play-btn').attr('href');
               } else {
                 if(mIndex != -1){
+				  console.log(mIndex);
                   window.location = $($('.tile-list li a')[mIndex]).attr('href');
                   mIndex = -1;
                 }
