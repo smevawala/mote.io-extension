@@ -7,6 +7,7 @@ exec(function(){
     display_input: true,
     update: function(force) {
 
+    	//mote.io.reciever.sendRemote
       if(jwplayer(player).getState() == 'PLAYING') {
         mote.io.updateButton('play', 'pause', null, force);
       } else {
@@ -52,25 +53,41 @@ exec(function(){
         data: [
 		 {
             press: function () {
-              jwplayer(player).seek(0);
+            	if(jwplayer(player).getPosition() > 600){
+            		jwplayer(player).seek(jwplayer(player).getPosition()-600);
+            	} else{
+            		jwplayer(player).seek(0);
+            	}
             },
             icon: 'fast-backward' 
           },
           {
             press: function () {
-              jwplayer(player).seek(jwplayer(player).getPosition()-50);
+            	if(jwplayer(player).getPosition() > 30){
+            		jwplayer(player).seek(jwplayer(player).getPosition()-30);
+            	} else{
+            		jwplayer(player).seek(0);
+            	}
             },
             icon: 'backward'
           },
           {
             press: function () {
-             jwplayer(player).seek(jwplayer(player).getPosition()+50);
+            	if(jwplayer(player).getPosition() < (jwplayer(player).getDuration()-30) ){
+            		jwplayer(player).seek(jwplayer(player).getPosition() + 30);
+            	} else{
+            		jwplayer(player).seek(jwplayer(player).getDuration()-1);
+            	}
             },
             icon: 'forward'
           },
           {
             press: function () {
-              alert("Skip");
+            	if(jwplayer(player).getPosition() < (jwplayer(player).getDuration()- 600) ){
+            		jwplayer(player).seek(jwplayer(player).getPosition() + 600);
+            	} else{
+            		jwplayer(player).seek(jwplayer(player).getDuration()-1);
+            	}
             },
             icon: 'fast-forward'
           }
