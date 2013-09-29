@@ -150,10 +150,10 @@ navBlocks = [
             press: function () {
               if(mIndex > 0){
 
-                $($('.tile-list li').find('a .poster-container')[mIndex]).css({'outline':''})
+                $($('.tile-list li').find('a .poster-container, .section-poster')[mIndex]).css({'outline':''})
                 mIndex--;
               }
-              $($('.tile-list li').find('a .poster-container')[mIndex]).css({'outline':'5px solid #ff9d00'})
+              $($('.tile-list li').find('a .poster-container, .section-poster')[mIndex]).css({'outline':'5px solid #ff9d00'})
 
             },
             icon: 'chevron-left' 
@@ -175,11 +175,11 @@ navBlocks = [
             press: function () {
               if(mIndex < $('.tile-list li').length-1){
                 if(mIndex != -1){
-                  $($('.tile-list li').find('a .poster-container')[mIndex]).css({'outline':''})
+                  $($('.tile-list li').find('a .poster-container, .section-poster')[mIndex]).css({'outline':''})
                 }
                 mIndex++; 
               }
-              $($('.tile-list li').find('a .poster-container')[mIndex]).css({'outline':'5px solid #ff9d00'})
+              $($('.tile-list li').find('a .poster-container, .section-poster')[mIndex]).css({'outline':'5px solid #ff9d00'})
             },
             icon: 'chevron-right'
           }
